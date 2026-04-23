@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 50px;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .description {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+            text-align: center;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Performance Dashboard</h1>
+
+<div class="section">
+    <h2>Score Distribution</h2>
+    <img src="{{ url_for('static', filename='plots/score_distribution.png') }}">
+    <div class="description">
+        This histogram shows the distribution of Math, Reading and Writing scores.
+        It helps identify where most students' performance is concentrated.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Gender Distribution</h2>
+    <img src="{{ url_for('static', filename='plots/gender_distribution.png') }}">
+    <div class="description">
+        This bar chart represents the number of male and female students in the dataset.
+        It helps understand the dataset balance.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Lunch Type Distribution</h2>
+    <img src="{{ url_for('static', filename='plots/lunch_distribution.png') }}">
+    <div class="description">
+        This chart shows how many students have standard lunch versus free/reduced lunch.
+        Lunch type may influence academic performance.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Reading vs Math Correlation</h2>
+    <img src="{{ url_for('static', filename='plots/reading_math_corr.png') }}">
+    <div class="description">
+        This scatter plot shows the relationship between Reading and Math scores.
+        A positive trend indicates that better reading skills often correlate with better math performance.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Feature Importance (Random Forest)</h2>
+    <img src="{{ url_for('static', filename='plots/feature_importance.png') }}">
+    <div class="description">
+        This graph shows which features have the strongest impact on predicting the Math score.
+        Higher values indicate greater influence in the model.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Correlation Heatmap</h2>
+    <img src="{{ url_for('static', filename='plots/corr_heatmap.png') }}">
+    <div class="description">
+        This heatmap displays the correlation between Math, Reading, and Writing scores.
+        Values close to 1 indicate strong positive correlation.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Boxplot by Gender</h2>
+    <img src="{{ url_for('static', filename='plots/box_gender.png') }}">
+    <div class="description">
+        This boxplot shows the distribution and variability of Math scores across genders.
+        It highlights median, spread, and potential outliers.
+    </div>
+</div>
+
+<div class="section">
+    <h2>Boxplot by Lunch Type</h2>
+    <img src="{{ url_for('static', filename='plots/box_lunch.png') }}">
+    <div class="description">
+        This boxplot compares Math score distribution based on lunch type.
+        It helps identify performance differences between groups.
+    </div>
+</div>
+
+<div class="links">
+    <a href="/">Back to Home</a>
+    <a href="/stats">View Statistics</a>
+</div>
+
+</body>
+</html>

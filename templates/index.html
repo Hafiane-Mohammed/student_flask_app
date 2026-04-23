@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Score Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 400px;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        label { font-size: 14px; }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 18px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            transition: 0.3s;
+        }
+        select:focus, input:focus { transform: scale(1.05); }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #764ba2;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #f1f1f1; transform: translateY(-3px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .footer { text-align: center; margin-top: 15px; font-size: 12px; opacity: 0.7; }
+        .links { text-align: center; margin-bottom: 15px; }
+        .links a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: 500; }
+        .links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Math Score Predictor</h2>
+
+    <!-- Liens vers dashboard ou stats -->
+    <div class="links">
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/stats">Statistics</a>
+    </div>
+
+    <form action="/predict" method="POST">
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label>Lunch Type</label>
+        <select name="lunch" required>
+            <option value="standard">Standard</option>
+            <option value="free/reduced">Free/Reduced</option>
+        </select>
+
+        <label>Test Preparation Course</label>
+        <select name="test_preparation_course" required>
+            <option value="none">None</option>
+            <option value="completed">Completed</option>
+        </select>
+
+        <label>Reading Score</label>
+        <input type="number" name="reading_score" min="0" max="100" oninput="if(this.value>100)this.value=100;if(this.value<0)this.value=0;" required>
+
+        <label>Writing Score</label>
+        <input type="number" name="writing_score" min="0" max="100" oninput="if(this.value>100)this.value=100;if(this.value<0)this.value=0;" required>
+
+        <button type="submit">Predict Score</button>
+    </form>
+
+    <!-- Section conseils ou messages -->
+    <div id="advice" style="margin-top:15px; text-align:center; font-size:14px; color:#fff;"></div>
+
+    <div class="footer">
+        Mini Data Science Project | Flask + ML
+    </div>
+</div>
+
+</body>
+</html>

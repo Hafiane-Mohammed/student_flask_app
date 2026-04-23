@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1d2b64, #f8cdda);
+        color: white;
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        padding: 50px;
+        border-radius: 25px;
+        width: 450px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        animation: fadeIn 1s ease-in-out;
+    }
+    h2 { margin-bottom: 20px; font-weight: 600; }
+    .score { font-size: 70px; font-weight: 700; margin: 20px 0; color: #ffffff; }
+    .label { font-size: 18px; opacity: 0.8; }
+    .advice { font-size: 14px; margin-top: 15px; color: #ffd700; }
+    .links { margin-top: 20px; }
+    .links a { margin: 0 10px; color: #fff; text-decoration: none; font-weight: 500; }
+    .links a:hover { text-decoration: underline; }
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        background: white;
+        color: #1d2b64;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover { transform: translateY(-4px); background: #f1f1f1; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Prediction Result</h2>
+
+    <div class="label">Predicted Math Score</div>
+    <div class="score" id="counter">0</div>
+
+    <!-- Conseils dynamiques -->
+    {% if advice %}
+    <div class="advice">
+        {% for item in advice %}
+            <p>{{ item }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form action="/">
+        <button type="submit">Predict Again</button>
+    </form>
+
+    <div class="links">
+        <a href="/dashboard">Go to Dashboard</a>
+        <a href="/stats">View Statistics</a>
+    </div>
+</div>
+
+<script>
+    let finalScore = {{ prediction|round(0) }};
+    let counter = document.getElementById("counter");
+    let current = 0;
+    let interval = setInterval(() => {
+        if (current >= finalScore) { clearInterval(interval); }
+        else { current++; counter.innerText = current; }
+    }, 20);
+</script>
+
+</body>
+</html>
